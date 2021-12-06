@@ -2,24 +2,26 @@
 public class Main {
 
     public static void main(String[] args) {
-        Polynomial A = new Polynomial();
-        A.generate(1000);
+        Graph hamiltonian = new Graph();
 
-        Polynomial B = new Polynomial();
-        B.generate(2300);
+        hamiltonian.generateHamiltonian(20);
+        Graph nonHamiltonian = new Graph();
+//        nonHamiltonian.generateNonHamiltonian(5);
 
-//        On2 algorithm = new On2(A, B, 16);
-        Karatsuba algorithm = new Karatsuba(A, B, 16);
+        System.out.println(hamiltonian);
+//        System.out.println(nonHamiltonian);
+
+        HamiltonianCycle h = new HamiltonianCycle(new NodesStack(), 1, hamiltonian, hamiltonian.startNode);
+
         long startTime = System.currentTimeMillis();
-        algorithm.run();
+        h.run();
         long endTime = System.currentTimeMillis();
-
         long duration = (endTime - startTime);
-
-//        System.out.println(algorithm.A);
-//        System.out.println(algorithm.B);
-//        System.out.println(algorithm.C);
         System.out.println(duration);
+        System.out.println(h.state);
+        System.out.println(h.path);
+
+
     }
 
 }
